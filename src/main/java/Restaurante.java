@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Restaurante {
     private String nombreComercial;
     private String nit;
