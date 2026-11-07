@@ -1,4 +1,5 @@
 public class EntregaSegura implements EmpresaDomicilio {
+
     private double tarifaBase;
     private double tarifaPorKm;
     private double recargoDistancia;
@@ -43,13 +44,27 @@ public class EntregaSegura implements EmpresaDomicilio {
         this.distanciaMaximaKm = distanciaMaximaKm;
     }
 
+    // acepta recorridos mayores que cero y hasta la distancia maxima
     @Override
     public boolean solicitarServicio(double distanciaKm) {
-        return false;
+        boolean aceptado = false;
+
+        if (distanciaKm > 0 && distanciaKm <= distanciaMaximaKm) {
+            aceptado = true;
+        }
+
+        return aceptado;
     }
 
+    // tarifa base + valor por kilometro, y recargo si la distancia supera 5 km
     @Override
     public double calcularCosto(double distanciaKm) {
-        return 0;
+        double costo = tarifaBase + (tarifaPorKm * distanciaKm);
+
+        if (distanciaKm > 5) {
+            costo = costo + recargoDistancia;
+        }
+
+        return costo;
     }
 }
