@@ -477,4 +477,3 @@ public class Aplicacion {
         } while (opcion != 0);
     }
 }
-
