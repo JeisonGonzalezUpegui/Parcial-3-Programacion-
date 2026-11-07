@@ -1,23 +1,24 @@
-public class Bebida extends Producto{
-    private int volumenMI;
+public class Bebida extends Producto {
+
+    private int volumenMl;
     private double temperaturaServicio;
     private boolean esFria;
     private boolean requierePreparacionEspecial;
 
-    public Bebida(String codigo, String nombre, String descripcion, double precioBase, int tiempoPreparacion, int volumenMI, double temperaturaServicio, boolean esFria, boolean requierePreparacionEspecial) {
+    public Bebida(String codigo, String nombre, String descripcion, double precioBase, int tiempoPreparacion,int volumenMl, double temperaturaServicio, boolean esFria, boolean requierePreparacionEspecial) {
         super(codigo, nombre, descripcion, precioBase, tiempoPreparacion);
-        this.volumenMI = volumenMI;
+        this.volumenMl = volumenMl;
         this.temperaturaServicio = temperaturaServicio;
         this.esFria = esFria;
         this.requierePreparacionEspecial = requierePreparacionEspecial;
     }
 
-    public int getVolumenMI() {
-        return volumenMI;
+    public int getVolumenMl() {
+        return volumenMl;
     }
 
-    public void setVolumenMI(int volumenMI) {
-        this.volumenMI = volumenMI;
+    public void setVolumenMl(int volumenMl) {
+        this.volumenMl = volumenMl;
     }
 
     public double getTemperaturaServicio() {
@@ -45,12 +46,43 @@ public class Bebida extends Producto{
     }
 
     @Override
-    public double calcularPrecioVenta() {
-        return 0;
+    public String toString() {
+        return "Categoria: Bebida\n" + super.toString()
+                + "\nVolumen: " + volumenMl + " ml"
+                + "\nTemperatura de servicio: " + temperaturaServicio + " C"
+                + "\nEs fria: " + esFria
+                + "\nRequiere preparacion especial: " + requierePreparacionEspecial;
     }
 
+    // precio base + 10% y recargo fijo de 3000 si requiere preparacion especial
+    @Override
+    public double calcularPrecioVenta() {
+        double precio = getPrecioBase() + (getPrecioBase() * 0.10);
+
+        if (requierePreparacionEspecial) {
+            precio = precio + 3000;
+        }
+
+        return precio;
+    }
+
+    // volumen entre 150 y 1500 ml, fria entre 0 y 10 C, caliente entre 55 y 85 C
     @Override
     public boolean cumpleCondicionesCalidad() {
-        return false;
+        boolean cumple = false;
+        boolean volumenValido = volumenMl >= 150 && volumenMl <= 1500;
+        boolean temperaturaValida = false;
+
+        if (esFria) {
+            temperaturaValida = temperaturaServicio >= 0 && temperaturaServicio <= 10;
+        } else {
+            temperaturaValida = temperaturaServicio >= 55 && temperaturaServicio <= 85;
+        }
+
+        if (volumenValido && temperaturaValida) {
+            cumple = true;
+        }
+
+        return cumple;
     }
 }
