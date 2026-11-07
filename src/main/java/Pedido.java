@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Pedido {
     private String codigo;
@@ -9,10 +10,10 @@ public class Pedido {
     private boolean domocilioAceptado;
     private double costoDomicilio;
     private Cliente cliente;
-    private EmpresaDomicilo empresaDomicilio;
-    private DetallePedido detallePedido;
+    private EmpresaDomicilio empresaDomicilio;
+    private ArrayList<DetallePedido> listaDetalles;
 
-    public Pedido(String codigo, LocalDate fecha, ModalidadEntrega modalidadEntrega, EstadoPedido estadoPedido, double distanciaKM, boolean domocilioAceptado, double costoDomicilio, Cliente cliente, EmpresaDomicilo empresaDomicilio, DetallePedido detallePedido) {
+    public Pedido(String codigo, LocalDate fecha, ModalidadEntrega modalidadEntrega, EstadoPedido estadoPedido, double distanciaKM, boolean domocilioAceptado, double costoDomicilio, Cliente cliente, EmpresaDomicilio empresaDomicilio, ArrayList<DetallePedido> listaDetalles) {
         this.codigo = codigo;
         this.fecha = fecha;
         this.modalidadEntrega = modalidadEntrega;
@@ -22,7 +23,7 @@ public class Pedido {
         this.costoDomicilio = costoDomicilio;
         this.cliente = cliente;
         this.empresaDomicilio = empresaDomicilio;
-        this.detallePedido = detallePedido;
+        this.listaDetalles = listaDetalles;
     }
 
     public String getCodigo() {
@@ -89,19 +90,19 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public EmpresaDomicilo getEmpresaDomicilio() {
+    public EmpresaDomicilio getEmpresaDomicilio() {
         return empresaDomicilio;
     }
 
-    public void setEmpresaDomicilio(EmpresaDomicilo empresaDomicilio) {
+    public void setEmpresaDomicilio(EmpresaDomicilio empresaDomicilio) {
         this.empresaDomicilio = empresaDomicilio;
     }
 
-    public DetallePedido getDetallePedido() {
-        return detallePedido;
+    public ArrayList<DetallePedido> getListaDetalles() {
+        return listaDetalles;
     }
 
-    public void setDetallePedido(DetallePedido detallePedido) {
-        this.detallePedido = detallePedido;
+    public void setListaDetalles(ArrayList<DetallePedido> listaDetalles) {
+        this.listaDetalles = listaDetalles;
     }
 }
