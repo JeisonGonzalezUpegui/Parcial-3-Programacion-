@@ -1,9 +1,18 @@
 public class DetallePedido {
-    private int cantidad;
-    private Producto producto;
 
-    public DetallePedido(int cantidad, Producto producto) {
+    private Producto producto;
+    private int cantidad;
+
+    public DetallePedido(Producto producto, int cantidad) {
+        this.producto = producto;
         this.cantidad = cantidad;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
         this.producto = producto;
     }
 
@@ -15,11 +24,16 @@ public class DetallePedido {
         this.cantidad = cantidad;
     }
 
-    public Producto getProducto() {
-        return producto;
+    @Override
+    public String toString() {
+        return "Producto: " + producto.getNombre()
+                + "\nCantidad: " + cantidad
+                + "\nPrecio unitario: " + producto.calcularPrecioVenta()
+                + "\nSubtotal: " + calcularSubtotal();
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    // precio de venta del producto por la cantidad
+    public double calcularSubtotal() {
+        return producto.calcularPrecioVenta() * cantidad;
     }
 }
