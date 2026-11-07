@@ -1,20 +1,23 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente {
+
     private String numeroDocumento;
     private String nombreCompleto;
     private String telefono;
     private String correoElectronico;
     private String direccionResidencia;
-    private ArrayList<Pedido> listaPedidos;
+    private ArrayList<Pedido> historialPedidos;
 
-    public Cliente(String numeroDocumento, String nombreCompleto, String telefono, String correoElectronico, String direccionResidencia, ArrayList<Pedido> listaPedidos) {
+    public Cliente(String numeroDocumento, String nombreCompleto, String telefono, String correoElectronico,
+                   String direccionResidencia) {
         this.numeroDocumento = numeroDocumento;
         this.nombreCompleto = nombreCompleto;
         this.telefono = telefono;
         this.correoElectronico = correoElectronico;
         this.direccionResidencia = direccionResidencia;
-        this.listaPedidos = listaPedidos;
+        historialPedidos = new ArrayList<>();
     }
 
     public String getNumeroDocumento() {
@@ -57,11 +60,12 @@ public class Cliente {
         this.direccionResidencia = direccionResidencia;
     }
 
-    public ArrayList<Pedido> getListaPedidos() {
-        return listaPedidos;
+    // guardar un pedido confirmado en el historial del cliente
+    public void agregarPedido(Pedido pedido) {
+        historialPedidos.add(pedido);
     }
 
-    public void setListaPedidos(ArrayList<Pedido> listaPedidos) {
-        this.listaPedidos = listaPedidos;
+    public List<Pedido> consultarHistorialPedidos() {
+        return historialPedidos;
     }
 }
